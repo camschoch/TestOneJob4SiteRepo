@@ -46,7 +46,7 @@ export default TabNavigator(
               break;
           case 'TestTwo':
             iconName =
-              Platform.OS === 'ios' ? `ion-alert${focused ? '' : '-outline'}` : 'md-alert';
+              Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options';
         }
         return (
           <Ionicons
