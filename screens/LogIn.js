@@ -12,25 +12,38 @@ import {
 import { WebBrowser } from 'expo';
 import axios from 'axios';
 import { MonoText } from '../components/StyledText';
+import {StackNavigator} from 'react-navigation';
+import RootNavigation from '../navigation/RootNavigation';
+import HomeScreen from './HomeScreen';
+import TestTwo from './TestTwo';
+import MainTabNavigator from '../navigation/MainTabNavigator'
 
-
-export default class HomeScreen extends React.Component {
+export default class LogIn extends React.Component {
   static navigationOptions = {
     header: null,
+    tabBarVisible: true,
   };
   
-  callAPI = () =>{
-    axios.get('http://dev.job4site.com/api/index.php', {
-    headers: {
-      username: 'danpettay@gmail.com',
-      password: 'Berserker16'
+  callAPIUser = () =>{
+    let user = null;
+    const { navigate } = this.props.navigation;    
+    axios.get('http://dev.job4site.com/api/index.php?', {
+    params: {
+      get_user: 'asdf'
     }
   })
     .then(function (response) {
-      console.log(response);
+      let hope = response.data;
+      console.log(response.data);
+      console.log(hope[0].User);
+      hope[0].User.forEach(element => {
+        console.log(element);
+      });
+      navigate('Home');
     })
     .catch(function (error) {
       console.log(error);
+      return <RootNavigation />
     });
   }
 
@@ -48,72 +61,14 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
             <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload. Please reload soon!
+            Log In
             </Text>
-            <Button onPress={this.callAPI} title='button'/>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
+            <Button onPress={this.callAPIUser} title='Log In'/>
         </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
 
 const styles = StyleSheet.create({
