@@ -13,9 +13,6 @@ import LogIn from '../screens/LogIn';
 
 export default TabNavigator(
   {
-    LogIn: {
-      screen: LogIn,
-    },
     Home: {
       screen: HomeScreen,
     },

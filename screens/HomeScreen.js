@@ -13,27 +13,7 @@ import { WebBrowser } from 'expo';
 import axios from 'axios';
 import { MonoText } from '../components/StyledText';
 
-
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
-  
-  callAPI = () =>{
-    axios.get('http://dev.job4site.com/api/index.php', {
-    headers: {
-      username: 'danpettay@gmail.com',
-      password: 'Berserker16'
-    }
-  })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
