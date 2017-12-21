@@ -12,33 +12,22 @@ import {
 import axios from 'axios';
 import HomeScreen from './HomeScreen';
 import TestTwo from "./TestTwo";
-
-const ModalStack = StackNavigator({
-  LogIn:{
-    screen: LogIn,
-  },
-  Home: {
-    screen: HomeScreen,
-  },
-  Profile: {
-    screen: TestTwo,
-  },
-});
+import {StackNavigator, NavigationActions} from 'react-navigation';  
 
 export default class LogIn extends React.Component {
   static navigationOptions = {
-    title: 'LogIn',
+    title: 'HIDE ME',
   };
 
   callAPIUser = () =>{
-    const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;    
     axios.get('http://dev.job4site.com/api/index.php?', {
     params: {
       get_user: 'asdf'
     }
   })
     .then(function (response) {
-      console.log("working");
+      console.log("working");  
       navigate('Home');
     })
     .catch(function (error) {
@@ -49,7 +38,6 @@ export default class LogIn extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Image
               source={
@@ -64,7 +52,6 @@ export default class LogIn extends React.Component {
             Log In
             </Text>
             <Button onPress={this.callAPIUser} title='Log In'/>
-        </ScrollView>
       </View>
     );
   }

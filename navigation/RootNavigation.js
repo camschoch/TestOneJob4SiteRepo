@@ -4,11 +4,28 @@ import { StackNavigator } from 'react-navigation';
 
 import MainTabNavigator from './MainTabNavigator';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+import LogIn from '../screens/LogIn';
+import HomeScreen from '../screens/HomeScreen';
+import LinksScreen from '../screens/LinksScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import TestTwo from '../screens/TestTwo';
 
 const RootStackNavigator = StackNavigator(
   {
     Main: {
-      screen: MainTabNavigator,
+      screen: LogIn,
+    },
+    Home: {
+      screen: HomeScreen,
+    },
+    Links: {
+      screen: LinksScreen,
+    },
+    Settings: {
+      screen: SettingsScreen,
+    },
+    TestTwo: {
+      screen: TestTwo,
     },
   },
   {

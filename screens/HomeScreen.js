@@ -41,7 +41,6 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.getStartedText}>
               Change this text and your app will automatically reload. Please reload soon!
             </Text>
-            <Button onPress={this.callAPI} title='button'/>
           </View>
 
           <View style={styles.helpContainer}>
